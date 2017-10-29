@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import styled, { css } from 'styled-components';
+import SampleContainer from './components/SampleContainer';
 
 const Button = styled.button`
   border-radius: 3px;
@@ -17,12 +18,24 @@ const Button = styled.button`
   `}
 `;
 
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTextSwitched: false
+    };
+  }
+
+  handleOnClick = () => {
+    this.setState((prevState) => {
+      return { isTextSwitched: !prevState.isTextSwitched };
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" onClick={this.handleOnClick}>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
@@ -33,6 +46,7 @@ class App extends Component {
           I'm a styled button!
         </Button>
         <Button primary>Primary Button</Button>
+        <SampleContainer isMainTextVisible={this.state.isTextSwitched}/>
       </div>
     );
   }
