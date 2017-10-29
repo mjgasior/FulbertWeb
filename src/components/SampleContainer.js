@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { textLoaderAction } from '../actions/sampleActions';
 
 class SampleContainer extends Component {
+    handleOnClick() {
+        this.props.actions("This is the new text after click!!!");
+    }
+
     render() {
-        if (this.props.isMainTextVisible) {
-            return (<p>Sample text with main text!</p>);   
-        } else {
-            return (<p>Just sample text!</p>);
-        }
+        return (
+            <p style={{ background: 'lightgray' }} onClick={this.handleOnClick.bind(this)}>
+                {this.props.theText}
+            </p>
+        );
     }
 }
 
-SampleContainer.propTypes = {
-    isMainTextVisible: PropTypes.bool.isRequired
-};
+function mapStateToProps(state, ownProps) {
+    return {
+        theText: state.myText
+    };
+}
+  
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(textLoaderAction, dispatch)
+    };
+}
+  
 
-export default SampleContainer;
+const ReduxSampleContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SampleContainer);
+
+export default ReduxSampleContainer;

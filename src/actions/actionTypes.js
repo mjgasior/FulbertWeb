@@ -1,0 +1,1 @@
+export const LOAD_TEXT_ACTION = "LOAD_TEXT_ACTION";

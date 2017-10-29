@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import styled, { css } from 'styled-components';
+import SamplePropTypes from './components/SamplePropTypes';
 import SampleContainer from './components/SampleContainer';
 
 const Button = styled.button`
@@ -46,7 +47,8 @@ class App extends Component {
           I'm a styled button!
         </Button>
         <Button primary>Primary Button</Button>
-        <SampleContainer isMainTextVisible={this.state.isTextSwitched}/>
+        <SamplePropTypes isMainTextVisible={this.state.isTextSwitched}/>
+        <SampleContainer/>
       </div>
     );
   }
