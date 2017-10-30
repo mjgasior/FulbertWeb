@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import { textLoaderAction } from '../actions/sampleActions';
 
 class SampleContainer extends Component {
-    handleOnClick() {
+    handleOnClick = () => {
         this.props.actions("This is the new text after click!!!");
     }
 
     render() {
         return (
-            <p style={{ background: 'lightgray' }} onClick={this.handleOnClick.bind(this)}>
+            <p style={{ background: 'lightgray' }} onClick={this.handleOnClick}>
                 {this.props.theText}
             </p>
         );
@@ -22,13 +22,12 @@ function mapStateToProps(state, ownProps) {
         theText: state.myText
     };
 }
-  
+
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(textLoaderAction, dispatch)
     };
 }
-  
 
 const ReduxSampleContainer = connect(
     mapStateToProps,
